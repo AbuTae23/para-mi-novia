@@ -1,46 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quieres ser mi novia? Evelyn ✨</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quieres ser mi novia? 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Pacifico&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffeef2 0%, #ffc2d1 100%);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Tarjeta principal centrada */
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 30px 25px;
+      border-radius: 35px;
+      box-shadow: 0 15px 35px rgba(255, 143, 163, 0.4);
+      border: 3px solid #ffffff;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Imagen del dibujo */
+    .main-img {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(255, 143, 163, 0.25);
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.9rem;
+      color: #ff4d6d;
+      margin-bottom: 25px;
+      line-height: 1.3;
+      text-shadow: 1px 1px 0px #fff;
+    }
+
+    /* Contenedor de botones */
+    .btn-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      min-height: 60px;
+      position: relative;
+    }
+
+    button {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 12px 30px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-yes {
+      background: #ff758f;
+      color: white;
+      box-shadow: 0 5px 15px rgba(255, 117, 143, 0.4);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-yes:hover {
+      transform: scale(1.1);
+      background: #ff4d6d;
+    }
+
+    .btn-no {
+      background: #ffffff;
+      color: #ff758f;
+      border: 2px solid #ffb3c1;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      z-index: 99;
+    }
+
+    /* Pantalla que sale al dar clic en Sí */
+    .final-screen {
+      display: none;
+      animation: pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .final-screen h1 {
+      font-family: 'Gaegu', cursive;
+      font-size: 2.2rem;
+      color: #c9184a;
+      line-height: 1.2;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Brillitos flotantes de fondo */
+    .sparkle {
+      position: fixed;
+      top: -20px;
+      pointer-events: none;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="magic-container" class="magic-wrapper"></div>
 
-    <div class="page-wrapper" id="main-content">
-        <h1 class="question">¿𝓢𝓐𝓡𝓐𝓘 𝓠𝓾𝓲𝓮𝓻𝓮𝓼 𝓼𝓮𝓻 𝓶𝓲 𝓷𝓸𝓿𝓲𝓮𝓬𝓲𝓽𝓪? ✨</h1>
-        
-        <div class="buttons-container">
-            <button class="yes" onclick="aceptar()">¡SÍ! ❤️</button>
-            <button class="no" id="btnNo">No 💔</button>
-        </div>
-
-        <div class="video-container">
-            <video width="400" controls autoplay loop muted>
-                <source src="YTDown.com_YouTube_Media_GgvXdmXmSmk_001_720p.mp4" type="video/mp4">
-            </video>
-        </div>
+  <div class="card">
+    <!-- Vista 1: Pregunta -->
+    <div id="initial-view">
+      <img class="main-img" src="NOVIES.jpg" alt="Dibujo tierno">
+      <h1>¿SARAI quieres ser mi noviecita? ✨🌸</h1>
+      <div class="btn-wrap">
+        <button class="btn-yes" onclick="celebrar()">¡Sí! 💖</button>
+        <button class="btn-no" id="btnNo" onmouseover="escapar()" onclick="escapar()">No 💔</button>
+      </div>
     </div>
 
-    <div id="final-message" class="message">
-        <h1>Me haces muy feliz mi vida, perdon por tan poco pero me esforce para hacerlo 😭😭</h1>
-        
-        <div class="photo-heart-container">
-            <img src="NOVIES.jpg" alt="Nosotros" class="photo-heart">
-        </div>
-
-        <div class="hearts">💖✨🌸💐🌻</div>
-
-        <p class="cute-phrase">
-𝓣𝓸𝓭𝓸 𝓵𝓸 𝓺𝓾𝓮 𝓪𝓶𝓸<br>
-&nbsp;𝓮𝓼𝓽𝓪 𝓮𝓷 𝓽𝓲<br>
-&nbsp;𝔂 𝓽𝓾 𝓮𝓷 𝓽𝓸𝓭𝓸 𝓵𝓸 𝓺𝓾𝓮 𝓪𝓶𝓸.💕
-</p>
+    <!-- Vista 2: Mensaje final -->
+    <div class="final-screen" id="final-view">
+      <img class="main-img" src="NOVIES.jpg" alt="Celebración">
+      <h1>¡Me haces muy feliz mi vida! Perdón por tan poco pero me esforcé para hacerlo 😭💖</h1>
     </div>
+  </div>
 
-    <script src="index.js"></script>
+  <script>
+    // Hace huir al botón No
+    function escapar() {
+      const btn = document.getElementById('btnNo');
+      const maxX = window.innerWidth - btn.offsetWidth - 30;
+      const maxY = window.innerHeight - btn.offsetHeight - 30;
+      
+      const newX = Math.max(20, Math.random() * maxX);
+      const newY = Math.max(20, Math.random() * maxY);
+
+      btn.style.position = 'fixed';
+      btn.style.left = `${newX}px`;
+      btn.style.top = `${newY}px`;
+    }
+
+    // Muestra el mensaje final
+    function celebrar() {
+      document.getElementById('initial-view').style.display = 'none';
+      document.getElementById('final-view').style.display = 'block';
+
+      for (let i = 0; i < 30; i++) {
+        crearBrillito();
+      }
+    }
+
+    // Brillitos animados
+    const iconos = ['🌸', '✨', '💖', '🎀', '🤍', '🫧'];
+    function crearBrillito() {
+      const el = document.createElement('div');
+      el.className = 'sparkle';
+      el.innerText = iconos[Math.floor(Math.random() * iconos.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+      el.style.opacity = Math.random() * 0.7 + 0.3;
+      el.style.fontSize = (Math.random() * 15 + 15) + 'px';
+      
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5500);
+    }
+
+    setInterval(crearBrillito, 350);
+  </script>
 </body>
 </html>
